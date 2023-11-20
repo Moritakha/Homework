@@ -1,7 +1,8 @@
 package com.example.Homework.domain.entities;
 
-
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -13,6 +14,7 @@ public class User {
 
     @Column(name = "username", length = 150, nullable = false)
     private String username;
+
     @Column(name = "password", length = 150, nullable = false)
     private String password;
 
@@ -21,11 +23,19 @@ public class User {
 
     @Column(name = "created_at")
     private String createdAt;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User_Detail userDetail;
 
-    public User(){
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "User_Rols",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    private List<Rol> roles = new ArrayList<>();
+
+    public User() {}
 
     public User(String username, String password, String email, String createdAt) {
         this.username = username;
@@ -74,7 +84,19 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public User_Detail getUserDetail(){ return userDetail; }
+    public User_Detail getUserDetail() {
+        return userDetail;
+    }
 
-    public void setUserDetail(User_Detail userDetail){ this.userDetail = userDetail; }
+    public void setUserDetail(User_Detail userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
 }

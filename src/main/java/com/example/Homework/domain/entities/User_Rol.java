@@ -69,4 +69,16 @@ public class User_Rol {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+
+    @Override
+    public String toString() {
+        return "UserRol{" +
+                "id=" + id +
+                ", active=" + active +
+                ", created_at=" + createdAt +
+                ", user=" + user +
+                ", rol=" + rol +
+                '}';
+    }
 }
