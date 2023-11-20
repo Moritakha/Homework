@@ -3,7 +3,7 @@ import com.example.Homework.domain.entities.User;
 
 import java.util.Date;
 
-public class User_DetailDto {
+public class User_DetailDTO {
 
     private Long id;
     private String firstName;
@@ -12,7 +12,7 @@ public class User_DetailDto {
     private Date birthday;
     private User user;
 
-    public User_DetailDto() {
+    public User_DetailDTO() {
     }
 
     public Long getId() {

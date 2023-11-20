@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RolService {
+public class RolServiceImp {
 
     private final RolRepository rolRepository;
 
     @Autowired
-    public RolService(RolRepository rolRepository) {
+    public RolServiceImp(RolRepository rolRepository) {
         this.rolRepository = rolRepository;
     }
 

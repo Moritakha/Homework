@@ -2,15 +2,15 @@ package com.example.Homework.dto;
 
 import java.sql.Timestamp;
 
-public class User_RolDto {
+public class User_RolDTO {
 
     private Long id;
     private Boolean active;
     private Timestamp createdAt;
-    private UserDto user;
-    private RolDto rol;
+    private UserDTO user;
+    private RolDTO rol;
 
-    public User_RolDto() {
+    public User_RolDTO() {
     }
 
 
@@ -39,19 +39,19 @@ public class User_RolDto {
         this.createdAt = createdAt;
     }
 
-    public UserDto getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(UserDto user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 
-    public RolDto getRol() {
+    public RolDTO getRol() {
         return rol;
     }
 
-    public void setRol(RolDto rol) {
+    public void setRol(RolDTO rol) {
         this.rol = rol;
     }
 

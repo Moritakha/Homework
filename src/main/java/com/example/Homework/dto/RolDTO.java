@@ -2,13 +2,13 @@ package com.example.Homework.dto;
 
 import java.util.List;
 
-public class RolDto {
+public class RolDTO {
 
     private Long id;
     private String nombre;
     private List<String> nombreUsers;
 
-    public RolDto() {
+    public RolDTO() {
     }
 
     public Long getId() {

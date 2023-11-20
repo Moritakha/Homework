@@ -1,11 +1,9 @@
 package com.example.Homework.dto;
 
-import com.example.Homework.domain.entities.User;
-
 import java.util.Date;
 import java.util.List;
 
-public class UserDto {
+public class UserDTO {
 
     private Long id;
     private String username;
@@ -18,7 +16,7 @@ public class UserDto {
     private Date birthday;
     private List<Integer> rolsIds;
 
-    public UserDto() {
+    public UserDTO() {
     }
 
     public Long getId() {
