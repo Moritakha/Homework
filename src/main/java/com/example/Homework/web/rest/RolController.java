@@ -27,7 +27,7 @@ public class RolController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Rol> obtenerRolPorId(@PathVariable Long id) {
+    public ResponseEntity<Rol> obtenerRolPorId(@PathVariable Integer id) {
         Optional<Rol> rol = rolServiceImp.obtenerRolPorId(id);
         return rol.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -40,13 +40,13 @@ public class RolController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Rol> actualizarRol(@PathVariable Long id, @RequestBody Rol nuevoRol) {
+    public ResponseEntity<Rol> actualizarRol(@PathVariable Integer id, @RequestBody Rol nuevoRol) {
         Rol rolActualizado = rolServiceImp.actualizarRol(id, nuevoRol);
         return new ResponseEntity<>(rolActualizado, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarRol(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarRol(@PathVariable Integer id) {
         rolServiceImp.eliminarRol(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

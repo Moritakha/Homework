@@ -9,7 +9,7 @@ import java.util.Date;
 public class User_Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "first_name", length = 100, nullable = false)
     private String firstName;
     @Column(name = "last_name", length = 100, nullable = false)
@@ -34,11 +34,11 @@ public class User_Detail {
         this.user = user;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -22,7 +22,7 @@ public class RolServiceImp {
         return rolRepository.findAll();
     }
 
-    public Optional<Rol> obtenerRolPorId(Long id) {
+    public Optional<Rol> obtenerRolPorId(Integer id) {
         return rolRepository.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class RolServiceImp {
         return rolRepository.save(rol);
     }
 
-    public Rol actualizarRol(Long id, Rol nuevoRol) {
+    public Rol actualizarRol(Integer id, Rol nuevoRol) {
         return rolRepository.findById(id)
                 .map(rol -> {
                     rol.setNombre(nuevoRol.getNombre());
@@ -42,7 +42,7 @@ public class RolServiceImp {
                 });
     }
 
-    public void eliminarRol(Long id) {
+    public void eliminarRol(Integer id) {
         rolRepository.deleteById(id);
     }
 }

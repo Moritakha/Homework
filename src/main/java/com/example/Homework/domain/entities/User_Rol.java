@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class User_Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "active", nullable = false)
     private Boolean active;
     @Column(name = "create_at", nullable = false)
@@ -30,11 +30,11 @@ public class User_Rol {
         this.createdAt = createdAt;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

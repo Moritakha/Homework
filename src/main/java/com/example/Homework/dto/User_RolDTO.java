@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class User_RolDTO {
 
-    private Long id;
+    private Integer id;
     private Boolean active;
     private Timestamp createdAt;
     private UserDTO user;
@@ -15,11 +15,11 @@ public class User_RolDTO {
 
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

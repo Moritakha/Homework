@@ -5,9 +5,7 @@ import com.example.Homework.dto.User_RolDTO;
 
 import java.util.List;
 public interface User_RolService {
-
-        List<User_RolDTO> getAllUserRols();
-
-        User_Rol parcial(User_RolDTO dto, Long id);
-
+        List<User_RolDTO> listUserRoles();
+        User_Rol parcial(User_RolDTO dto, Integer id);
 }
+

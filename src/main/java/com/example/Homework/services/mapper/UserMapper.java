@@ -17,15 +17,15 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
 
     @Override
     public UserDTO toDto(User user) {
-        UserDTO usuarioDTO = new UserDTO();
-        usuarioDTO.setId(user.getId());
-        usuarioDTO.setUsername(user.getUsername());
-        usuarioDTO.setPassword(user.getPassword());
-        usuarioDTO.setEmail(user.getEmail());
-        usuarioDTO.setCreatedAt(user.getCreatedAt());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setPassword(user.getPassword());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setCreatedAt(user.getCreatedAt());
 
 
-        return usuarioDTO;
+        return userDTO;
     }
 
 
@@ -54,7 +54,7 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
             userDTO.setRolsIds(
                     user.getRols().stream()
                             .map(Rol::getId)
-                            .map(Long::intValue)
+                            .map(Integer::intValue)
                             .collect(Collectors.toList())
                             .reversed()
             );

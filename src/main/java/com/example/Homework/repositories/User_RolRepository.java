@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface User_RolRepository extends JpaRepository<User_Rol, Long> {
+public interface User_RolRepository extends JpaRepository<User_Rol, Integer> {
     @Query("SELECT ur FROM User_Rol ur WHERE ur.user = :user")
     List<User_Rol> findByUser(@Param("user") User user);
 }

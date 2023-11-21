@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RestController
 @RequestMapping("/api/userRols")
 public class User_RolController {
 
@@ -19,12 +19,12 @@ public class User_RolController {
         this.userRolService = userRolService;
     }
     @GetMapping
-    public ResponseEntity<List<User_RolDTO>> getAllUserRols() {
-        return ResponseEntity.ok().body(userRolService.getAllUserRols());
+    public ResponseEntity<List<User_RolDTO>> listUserRoles() {
+        return ResponseEntity.ok().body(userRolService.listUserRoles());
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User_RolDTO> actualizarParcial(@RequestBody User_RolDTO dto, @PathVariable final Long id) {
+    public ResponseEntity<User_RolDTO> actualizarParcial(@RequestBody User_RolDTO dto, @PathVariable final Integer id) {
         userRolService.parcial(dto, id);
 
         return new ResponseEntity<>(dto, HttpStatus.OK);

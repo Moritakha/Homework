@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class User_DetailDTO {
 
-    private Long id;
+    private Integer id;
     private String firstName;
     private String lastName;
     private Integer age;
@@ -16,11 +16,11 @@ public class User_DetailDTO {
     public User_DetailDTO() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

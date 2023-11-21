@@ -10,9 +10,12 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
-@RequestMapping("/api/users")
+
+@RestController
+@RequestMapping("/api/user")
 public class UserController {
     private final UserService userService;
+
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -20,9 +23,9 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers(@RequestParam(required = false, defaultValue = "false") boolean detailed) {
         if (detailed) {
-            return ResponseEntity.ok().body(userService.getAllUsertDetail());
+            return ResponseEntity.ok().body(userService.listUsersDetailed());
         } else {
-            return ResponseEntity.ok().body(userService.getAllUsers());
+            return ResponseEntity.ok().body(userService.listUsers());
         }
     }
 
@@ -53,14 +56,14 @@ public class UserController {
             throw new IllegalArgumentException("Invalid id");
         }
 
-        userService.editUser(Long.valueOf(id), dto);
+        userService.editarUser(Integer.valueOf(id), dto);
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable final Integer id) {
-        userService.deleteUser(Long.valueOf(id));
+        userService.delete(Integer.valueOf(id));
 
         return ResponseEntity.noContent().build();
     }
