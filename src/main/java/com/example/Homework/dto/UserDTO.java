@@ -1,6 +1,6 @@
 package com.example.Homework.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserDTO {
@@ -13,7 +13,7 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private Integer age;
-    private Date birthday;
+    private LocalDate birthday;
     private List<Integer> rolsIds;
 
     public UserDTO() {
@@ -83,11 +83,11 @@ public class UserDTO {
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -98,4 +98,5 @@ public class UserDTO {
     public void setRolsIds(List<Integer> rolsIds) {
         this.rolsIds = rolsIds;
     }
+
 }

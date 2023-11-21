@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/roles")
+@RequestMapping("/api/rols")
 public class RolController {
 
     private final RolServiceImp rolServiceImp;

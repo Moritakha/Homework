@@ -2,6 +2,7 @@ package com.example.Homework.domain.entities;
 
 import jakarta.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -33,7 +34,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
-    private List<Rol> roles = new ArrayList<>();
+    private List<Rol> rols = new ArrayList<>();
 
     public User() {}
 
@@ -92,11 +93,13 @@ public class User {
         this.userDetail = userDetail;
     }
 
-    public List<Rol> getRoles() {
-        return roles;
+    public List<Rol> getRols() {
+        return rols;
     }
 
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
+    public void setRols(List<Rol> rols) {
+        this.rols = rols;
     }
+
+
 }

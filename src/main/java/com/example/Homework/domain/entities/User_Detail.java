@@ -2,6 +2,7 @@ package com.example.Homework.domain.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 @Entity
 @Table(name = "Users_Detail")
@@ -16,7 +17,7 @@ public class User_Detail {
     @Column(name = "age")
     private Integer age;
     @Column(name = "birth_day")
-    private Date birthday;
+    private LocalDate birthday;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -25,7 +26,7 @@ public class User_Detail {
     public User_Detail(){
     }
 
-    public User_Detail(String firstName, String lastName, Integer age, Date birthday, User user) {
+    public User_Detail(String firstName, String lastName, Integer age, LocalDate birthday, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -65,11 +66,11 @@ public class User_Detail {
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthay() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

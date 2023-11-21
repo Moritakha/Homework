@@ -9,6 +9,8 @@ public interface RolService {
 
     RolDTO getRolById(Long id);
 
+    RolDTO saveRol(RolDTO dto);
+
     RolDTO createRol(RolDTO rolDTO);
 
     void deleteRol(Long id);

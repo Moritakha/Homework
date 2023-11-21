@@ -1,6 +1,7 @@
 package com.example.Homework.dto;
 import com.example.Homework.domain.entities.User;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class User_DetailDTO {
@@ -9,7 +10,7 @@ public class User_DetailDTO {
     private String firstName;
     private String lastName;
     private Integer age;
-    private Date birthday;
+    private LocalDate birthday;
     private User user;
 
     public User_DetailDTO() {
@@ -47,11 +48,11 @@ public class User_DetailDTO {
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
