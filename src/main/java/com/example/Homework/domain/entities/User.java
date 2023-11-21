@@ -6,11 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "usuario")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @Column(nullable = false)
     private Integer id;
 
     @Column(name = "username", length = 150, nullable = false)
@@ -30,7 +32,7 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "User_Rols",
+            name = "user_Rol",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
@@ -38,11 +40,13 @@ public class User {
 
     public User() {}
 
-    public User(String username, String password, String email, String createdAt) {
+    public User(String username, String password, String email, String createdAt, User_Detail userDetail, List<Rol> rols) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdAt = createdAt;
+        this.userDetail = userDetail;
+        this.rols = rols;
     }
 
     public Integer getId() {
@@ -100,6 +104,4 @@ public class User {
     public void setRols(List<Rol> rols) {
         this.rols = rols;
     }
-
-
 }

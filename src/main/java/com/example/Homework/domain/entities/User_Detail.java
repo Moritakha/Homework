@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 @Entity
-@Table(name = "Users_Detail")
+@Table(name = "user_detail")
 public class User_Detail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "user_detail_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_detail_sequence")
+    @Column(nullable = false)
     private Integer id;
     @Column(name = "first_name", length = 100, nullable = false)
     private String firstName;

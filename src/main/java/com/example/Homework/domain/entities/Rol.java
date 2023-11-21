@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Rols")
+@Table(name = "rol")
 public class Rol {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "rol_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rol_sequence")
+    @Column(nullable = false)
     private Integer id;
 
     @Column(name = "nombre", length = 100, nullable = false)
