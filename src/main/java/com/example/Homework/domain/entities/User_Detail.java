@@ -16,13 +16,13 @@ public class User_Detail {
     private String firstName;
     @Column(name = "last_name", length = 100, nullable = false)
     private String lastName;
-    @Column(name = "age")
+    @Column(nullable = true)
     private Integer age;
     @Column(name = "birth_day")
     private LocalDate birthday;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public User_Detail(){

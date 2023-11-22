@@ -72,6 +72,7 @@ public class User_DetailDTO {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", birthday=" + birthday +
+                ", user=" + user +
                 '}';
     }
 }

@@ -20,7 +20,7 @@ public class User_DetailController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User_DetailDTO>> listUser_Details() {
+    public ResponseEntity<List<User_DetailDTO>> listDetails() {
         return ResponseEntity.ok().body(userDetailService.listUser_Details());
     }
 

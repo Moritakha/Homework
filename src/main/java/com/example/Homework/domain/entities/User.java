@@ -1,9 +1,9 @@
 package com.example.Homework.domain.entities;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Entity
 @Table(name = "usuario")
@@ -15,32 +15,31 @@ public class User {
     @Column(nullable = false)
     private Integer id;
 
-    @Column(name = "username", length = 150, nullable = false)
+    @Column(length = 150, nullable = false)
     private String username;
 
-    @Column(name = "password", length = 150, nullable = false)
+    @Column(length = 150, nullable = false)
     private String password;
 
-    @Column(name = "email", length = 150, nullable = false)
+    @Column(length = 150, nullable = false)
     private String email;
 
-    @Column(name = "created_at")
-    private String createdAt;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+    private LocalDateTime createdAt;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User_Detail userDetail;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_Rol",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "rol_id")
-    )
-    private List<Rol> rols = new ArrayList<>();
+            inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> rols = new HashSet<>();
 
     public User() {}
 
-    public User(String username, String password, String email, String createdAt, User_Detail userDetail, List<Rol> rols) {
+    public User(String username, String password, String email, LocalDateTime createdAt, User_Detail userDetail, Set<Rol> rols) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -81,11 +80,11 @@ public class User {
         this.email = email;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -97,11 +96,11 @@ public class User {
         this.userDetail = userDetail;
     }
 
-    public List<Rol> getRols() {
+    public Set<Rol> getRols() {
         return rols;
     }
 
-    public void setRols(List<Rol> rols) {
+    public void setRols(Set<Rol> rols) {
         this.rols = rols;
     }
 }

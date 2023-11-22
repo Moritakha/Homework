@@ -1,12 +1,13 @@
 package com.example.Homework.dto;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class User_RolDTO {
 
     private Integer id;
     private Boolean active;
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
     private UserDTO user;
     private RolDTO rol;
 
@@ -31,11 +32,11 @@ public class User_RolDTO {
         this.active = active;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

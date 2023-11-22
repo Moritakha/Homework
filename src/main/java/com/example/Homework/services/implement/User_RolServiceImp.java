@@ -31,7 +31,7 @@ public class User_RolServiceImp implements User_RolService{
     @Override
     public User_Rol parcial(User_RolDTO dto, Integer id) {
         User_Rol userRol = userRolRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("UsuarioRol no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuario Rol no encontrado"));
 
         if (dto.getActive() != null) {
             userRol.setActive(dto.getActive());

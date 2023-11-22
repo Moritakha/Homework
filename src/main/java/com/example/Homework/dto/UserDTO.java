@@ -1,6 +1,7 @@
 package com.example.Homework.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserDTO {
@@ -9,7 +10,7 @@ public class UserDTO {
     private String username;
     private String password;
     private String email;
-    private String createdAt;
+    private LocalDateTime createdAt;
     private String firstName;
     private String lastName;
     private Integer age;
@@ -51,11 +52,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -98,5 +99,4 @@ public class UserDTO {
     public void setRolsIds(List<Integer> rolsIds) {
         this.rolsIds = rolsIds;
     }
-
 }

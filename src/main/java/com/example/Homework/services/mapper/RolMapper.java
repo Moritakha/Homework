@@ -4,7 +4,6 @@ import com.example.Homework.domain.entities.Rol;
 import com.example.Homework.dto.RolDTO;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class RolMapper implements CustomMapper<RolDTO, Rol>{
         @Override

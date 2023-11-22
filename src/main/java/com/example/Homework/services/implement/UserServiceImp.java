@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserServiceImp implements UserService{
-
     @PersistenceContext
     private EntityManager entityManager;
     private final UserRepository userRepository;
@@ -44,7 +43,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<UserDTO> listUsers() {
         return userRepository.findAll()
                 .stream()
@@ -52,7 +51,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<UserDTO> listUsersDetailed() {
         return userRepository.findAll()
                 .stream()
@@ -65,7 +64,7 @@ public class UserServiceImp implements UserService{
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
-        user.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        user.setCreatedAt(LocalDateTime.now());
 
         userRepository.save(user);
 
@@ -87,7 +86,7 @@ public class UserServiceImp implements UserService{
                 User_Rol userRol = new User_Rol();
                 userRol.setUser(user);
                 userRol.setRol(rol);
-                userRol.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
+                userRol.setCreatedAt(LocalDateTime.now());
                 userRol.setActive(true);
 
                 userRolRepository.save(userRol);
@@ -96,12 +95,6 @@ public class UserServiceImp implements UserService{
         return userMapper.toDto(user);
     }
 
-    @Override
-    @Transactional
-    public Optional<UserDTO> getUserById(Integer id) {
-        return userRepository.findById(id).map(userMapper::toDtoDetailed);
-    }
-    
     public UserDTO editarUser(Integer id, UserDTO dto) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("user no encontrado"));
@@ -140,7 +133,7 @@ public class UserServiceImp implements UserService{
                             User_Rol userRol = new User_Rol();
                             userRol.setUser(user);
                             userRol.setRol(rol);
-                            userRol.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
+                            userRol.setCreatedAt(LocalDateTime.now());
                             userRol.setActive(true);
 
                             userRolRepository.save(userRol);
@@ -155,8 +148,27 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public void delete(Integer id) {
+    @Transactional(readOnly = true)
+    public Optional<UserDTO> getUserById(Integer id) {
+        return userRepository.findById(id).map(userMapper::toDtoDetailed);
+    }
 
+
+    @Override
+    public void delete(Integer id) {
+        User user= userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.getRols().clear();
+        }
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteRolesByUser(User user) {
+        String jpql = "DELETE FROM User_Rol ur WHERE ur.user = :user";
+        entityManager.createQuery(jpql)
+                .setParameter("user", user)
+                .executeUpdate();
     }
 }
 

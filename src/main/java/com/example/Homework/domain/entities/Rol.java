@@ -2,7 +2,9 @@ package com.example.Homework.domain.entities;
 
 import jakarta.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "rol")
@@ -18,15 +20,16 @@ public class Rol {
     private String nombre;
 
     @ManyToMany(mappedBy = "rols")
-    private List<User> users = new ArrayList<>();
+    private Set<User> users = new HashSet<>();
 
-    public Rol() {
-
+    public Rol(){
     }
 
-    public Rol(String nombre) {
+    public Rol(String nombre, Set<User> users) {
         this.nombre = nombre;
+        this.users = users;
     }
+
 
     public Integer getId() {
         return id;
@@ -44,14 +47,13 @@ public class Rol {
         this.nombre = nombre;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
-
 
     @Override
     public String toString() {

@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers(@RequestParam(required = false, defaultValue = "false") boolean detailed) {
+    public ResponseEntity<List<UserDTO>> listUsuarios(@RequestParam(required = false, defaultValue = "false") boolean detailed) {
         if (detailed) {
             return ResponseEntity.ok().body(userService.listUsersDetailed());
         } else {
@@ -33,13 +33,13 @@ public class UserController {
     public ResponseEntity<UserDTO> getUsersById(@PathVariable final Integer id) {
         return ResponseEntity
                 .ok()
-                .body(userService.getUserById(id).orElseThrow(() -> new IllegalArgumentException("Recurso no encontrado: " + id)));
+                .body(userService.getUserById(id).orElseThrow(() -> new IllegalArgumentException("No se encuentra el recursp: " + id)));
     }
 
     @PostMapping
     public ResponseEntity<UserDTO> create(@RequestBody final UserDTO dto) throws URISyntaxException {
         if (dto.getId() != null) {
-            throw new IllegalArgumentException("Usuario no puede tener ya un id ingresado.");
+            throw new IllegalArgumentException("El usuario no puede tener un id ingresado.");
         }
 
         userService.save(dto);
@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> editUser(@PathVariable Integer id, @RequestBody UserDTO dto) throws URISyntaxException {
+    public ResponseEntity<UserDTO> editarUser(@PathVariable Integer id, @RequestBody UserDTO dto) throws URISyntaxException {
         if (dto.getId() == null) {
             throw new IllegalArgumentException("Invalid usuario id, null value");
         }
@@ -56,14 +56,14 @@ public class UserController {
             throw new IllegalArgumentException("Invalid id");
         }
 
-        userService.editarUser(Integer.valueOf(id), dto);
+        userService.editarUser(id, dto);
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable final Integer id) {
-        userService.delete(Integer.valueOf(id));
+    public ResponseEntity<Void> delete(@PathVariable final Integer id) {
+        userService.delete(id);
 
         return ResponseEntity.noContent().build();
     }

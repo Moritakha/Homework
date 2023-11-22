@@ -28,7 +28,6 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         return userDTO;
     }
 
-
     public UserDTO toDtoDetailed(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
@@ -51,16 +50,13 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         }
 
         if (!user.getRols().isEmpty() && user.getRols() != null) {
-            userDTO.setRolsIds(
-                    user.getRols().stream()
-                            .map(Rol::getId)
-                            .map(Integer::intValue)
-                            .collect(Collectors.toList())
-                            .reversed()
-            );
+            userDTO.setRolsIds(user.getRols().stream().map(Rol::getId).collect(Collectors.toList()));
+
         } else {
             userDTO.setRolsIds(Collections.singletonList(ValorPredeterminado.ID));
+
         }
+
 
         return userDTO;
     }
