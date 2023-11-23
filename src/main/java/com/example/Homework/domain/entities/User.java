@@ -1,44 +1,58 @@
 package com.example.Homework.domain.entities;
 
-
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.*;
+
 @Entity
-@Table(name = "Users")
+@Table(name = "usuario")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @SequenceGenerator(name = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @Column(nullable = false)
+    private Integer id;
 
-    @Column(name = "username", length = 150, nullable = false)
+    @Column(length = 150, nullable = false)
     private String username;
-    @Column(name = "password", length = 150, nullable = false)
+
+    @Column(length = 150, nullable = false)
     private String password;
 
-    @Column(name = "email", length = 150, nullable = false)
+    @Column(length = 150, nullable = false)
     private String email;
 
-    @Column(name = "created_at")
-    private String createdAt;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+    private LocalDateTime createdAt;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User_Detail userDetail;
 
-    public User(){
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_Rol",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> rols = new HashSet<>();
 
-    public User(String username, String password, String email, String createdAt) {
+    public User() {}
+
+    public User(String username, String password, String email, LocalDateTime createdAt, User_Detail userDetail, Set<Rol> rols) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdAt = createdAt;
+        this.userDetail = userDetail;
+        this.rols = rols;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -66,15 +80,27 @@ public class User {
         this.email = email;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public User_Detail getUserDetail(){ return userDetail; }
+    public User_Detail getUserDetail() {
+        return userDetail;
+    }
 
-    public void setUserDetail(User_Detail userDetail){ this.userDetail = userDetail; }
+    public void setUserDetail(User_Detail userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public Set<Rol> getRols() {
+        return rols;
+    }
+
+    public void setRols(Set<Rol> rols) {
+        this.rols = rols;
+    }
 }

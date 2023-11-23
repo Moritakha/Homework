@@ -1,28 +1,45 @@
 package com.example.Homework.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Rols")
+@Table(name = "rol")
 public class Rol {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @SequenceGenerator(name = "rol_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rol_sequence")
+    @Column(nullable = false)
+    private Integer id;
+
     @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;
 
-    private Rol(){
+    @ManyToMany(mappedBy = "rols")
+    private Set<User> users = new HashSet<>();
+
+    public Rol(){
     }
 
-    public Rol(String nombre) {
+    public Rol(String nombre, Set<User> users) {
         this.nombre = nombre;
+        this.users = users;
     }
 
-    public Long getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,5 +51,20 @@ public class Rol {
         this.nombre = nombre;
     }
 
+    public Set<User> getUsers() {
+        return users;
+    }
 
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Rol{" +
+                "id=" + id +
+                ", name='" + nombre + '\'' +
+                ", users=" + users +
+                '}';
+    }
 }

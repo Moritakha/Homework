@@ -1,39 +1,19 @@
-package com.example.Homework.domain.entities;
-
-import jakarta.persistence.*;
+package com.example.Homework.dto;
+import com.example.Homework.domain.entities.User;
 
 import java.time.LocalDate;
 import java.util.Date;
-@Entity
-@Table(name = "user_detail")
-public class User_Detail {
-    @Id
-    @SequenceGenerator(name = "user_detail_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_detail_sequence")
-    @Column(nullable = false)
-    private Integer id;
-    @Column(name = "first_name", length = 100, nullable = false)
-    private String firstName;
-    @Column(name = "last_name", length = 100, nullable = false)
-    private String lastName;
-    @Column(nullable = true)
-    private Integer age;
-    @Column(name = "birth_day")
-    private LocalDate birthday;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+public class User_DetailDTO {
+
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private Integer age;
+    private LocalDate birthday;
     private User user;
 
-    public User_Detail(){
-    }
-
-    public User_Detail(String firstName, String lastName, Integer age, LocalDate birthday, User user) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.birthday = birthday;
-        this.user = user;
+    public User_DetailDTO() {
     }
 
     public Integer getId() {
@@ -68,7 +48,7 @@ public class User_Detail {
         this.age = age;
     }
 
-    public LocalDate getBirthay() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
@@ -84,15 +64,14 @@ public class User_Detail {
         this.user = user;
     }
 
-
     @Override
     public String toString() {
-        return "UserDetail{" +
+        return "UserDetailDTO{" +
                 "id=" + id +
-                ", first_name='" + firstName + '\'' +
-                ", last_name='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", birth_day=" + birthday +
+                ", birthday=" + birthday +
                 ", user=" + user +
                 '}';
     }
