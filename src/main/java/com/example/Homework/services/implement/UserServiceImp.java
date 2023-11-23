@@ -34,6 +34,7 @@ public class UserServiceImp implements UserService{
     private final User_RolRepository userRolRepository;
     private final RolRepository rolRepository;
 
+
     public UserServiceImp(UserRepository userRepository, UserMapper userMapper, User_DetailRepository userDetailRepository, User_RolRepository userRolRepository, RolRepository rolRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
@@ -156,7 +157,8 @@ public class UserServiceImp implements UserService{
 
     @Override
     public void delete(Integer id) {
-        User user= userRepository.findById(id).orElse(null);
+        User user= userRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("El usuario no existe"));
         if (user != null) {
             user.getRols().clear();
         }
@@ -170,5 +172,17 @@ public class UserServiceImp implements UserService{
                 .setParameter("user", user)
                 .executeUpdate();
     }
+
+
+    public class ApplicationException extends RuntimeException{
+        public ApplicationException(String message) {
+            super (message);}
+        public ApplicationException(String message, Throwable cause) {
+            super(message, cause);}
+    }
+    public class ResourceNotFoundException extends ApplicationException{
+        public ResourceNotFoundException (String message) { super (message);}
+    }
+
 }
 

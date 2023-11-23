@@ -13,4 +13,5 @@ public interface UserService {
     UserDTO editarUser( Integer id, UserDTO dto);
 
     void delete(Integer id);
+
 }

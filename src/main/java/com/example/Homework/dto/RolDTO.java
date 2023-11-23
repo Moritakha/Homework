@@ -1,10 +1,15 @@
 package com.example.Homework.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.List;
 
 public class RolDTO {
 
     private Integer id;
+    @NotBlank
+    @NotNull
     private String nombre;
     private List<String> nombreUsers;
 

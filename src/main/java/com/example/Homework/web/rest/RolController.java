@@ -1,19 +1,20 @@
 package com.example.Homework.web.rest;
 
-import com.example.Homework.domain.entities.Rol;
 import com.example.Homework.dto.RolDTO;
 import com.example.Homework.services.RolService;
-import com.example.Homework.services.implement.RolServiceImp;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.RoleNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/rols")
@@ -41,7 +42,10 @@ public class RolController {
         return ResponseEntity.ok().body(rolService.listRolsConUsers());
     }
     @PostMapping
-    public ResponseEntity<RolDTO> create(@RequestBody final RolDTO dto) throws URISyntaxException {
+    public ResponseEntity<RolDTO> create(@Valid @RequestBody final RolDTO dto, BindingResult bindingResult) throws URISyntaxException {
+        if(bindingResult.hasErrors()){
+            throw new IllegalArgumentException("El nombre de rol no puede ser vacio o nulo.");
+        }
         if (dto.getId() != null) {
             throw new IllegalArgumentException("Rol no puede tener un id ingresado.");
         }
@@ -67,9 +71,10 @@ public class RolController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable final Integer id) {
+    public ResponseEntity<String> delete(@PathVariable final Integer id) {
         rolService.delete(id);
-
         return ResponseEntity.noContent().build();
     }
+
+
 }

@@ -73,4 +73,5 @@ public class RolServiceImp implements RolService {
     public void delete(Integer id) {
         rolRepository.deleteById(id);
     }
+
 }

@@ -1,6 +1,10 @@
 package com.example.Homework.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.validation.annotation.Validated;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

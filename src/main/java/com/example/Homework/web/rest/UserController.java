@@ -2,6 +2,7 @@ package com.example.Homework.web.rest;
 
 import com.example.Homework.dto.UserDTO;
 import com.example.Homework.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +68,10 @@ public class UserController {
 
         return ResponseEntity.noContent().build();
     }
+
+    // Otros métodos existentes...
+
+
 
 
 }
